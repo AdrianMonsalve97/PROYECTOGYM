@@ -3,7 +3,6 @@ package com.tobigym.proyectgym.repository.repositorycriteria;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -21,11 +20,11 @@ public class CriteriaCliente implements CLCriteriaRepository {
     EntityManager em;
 
     @Override
-    public List<Cliente> findByNombresAndEdad(String nombres, String edad) {
+    public List<Cliente> findClientesByEdadAndNombre(String nombres, String edad) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
         Root<Cliente> cliente = cq.from(Cliente.class);
-        cq.select(cliente);
+        // cq.select(cliente);
 
         Predicate predicadoNombres = cb.equal(cliente.get("nombres"), nombres);
         Predicate predicadoEdad = cb.like(cliente.get("edad"), "%" + edad + "%");

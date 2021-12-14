@@ -77,11 +77,11 @@ public class ClienteController {
     }
 
     // Croteroa ----------------------------------//
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("findAll")
-    public List<Cliente> findAllClientes(@RequestParam(required = false) String nombres,
+    public List<Cliente> findAllCliente(@RequestParam(required = false) String nombres,
             @RequestParam(required = false) String edad) {
-        return clienteService.findByNombresAndEdad(nombres, edad);
+        return clienteService.findClientesByEdadAndNombre(nombres, edad);
     }
 
 }

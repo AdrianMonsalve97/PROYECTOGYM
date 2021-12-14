@@ -8,5 +8,5 @@ public interface IClienteservice {
 
     public Cliente save(Cliente clienteActual);
 
-    List<Cliente> findByNombresAndEdad(String nombres, String edad);
+    List<Cliente> findClientesByEdadAndNombre(String nombres, String edad);
 }

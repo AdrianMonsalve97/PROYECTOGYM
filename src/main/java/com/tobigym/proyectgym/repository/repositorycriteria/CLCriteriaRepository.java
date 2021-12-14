@@ -6,5 +6,5 @@ import com.tobigym.proyectgym.models.Cliente;
 
 public interface CLCriteriaRepository {
 
-    List<Cliente> findByNombresAndEdad(String nombres, String edad);
+    List<Cliente> findClientesByEdadAndNombre(String nombres, String edad);
 }

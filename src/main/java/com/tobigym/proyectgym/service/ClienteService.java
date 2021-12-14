@@ -19,7 +19,7 @@ public class ClienteService implements IClienteservice {
     ClienteRepository clienteRepository;
 
     @Autowired
-    CriteriaCliente criteriaQueryImpl;
+    CriteriaCliente criteriaQuery;
 
     public List<Cliente> list() {
         return clienteRepository.findAll();
@@ -40,8 +40,8 @@ public class ClienteService implements IClienteservice {
     }
 
     @Override
-    public List<Cliente> findByNombresAndEdad(String nombres, String edad) {
-        return criteriaQueryImpl.findByNombresAndEdad(nombres, edad);
+    public List<Cliente> findClientesByEdadAndNombre(String nombres, String edad) {
+        return criteriaQuery.findClientesByEdadAndNombre(nombres, edad);
     }
 
 }
