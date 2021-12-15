@@ -40,8 +40,8 @@ public class ClienteService implements IClienteservice {
     }
 
     @Override
-    public List<Cliente> findClientesByEdadAndNombre(String nombres, String edad) {
-        return criteriaQuery.findClientesByEdadAndNombre(nombres, edad);
+    public List<Cliente> findClientesByNombreAndEdad(String nombres, String edad) {
+        return criteriaQuery.findClientesByNombreAndEdad(nombres, edad);
     }
 
 }

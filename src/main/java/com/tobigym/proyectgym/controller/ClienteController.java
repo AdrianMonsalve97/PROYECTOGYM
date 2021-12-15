@@ -76,12 +76,12 @@ public class ClienteController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    // Croteroa ----------------------------------//
+    // Criteria ----------------------------------//
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("findAll")
     public List<Cliente> findAllCliente(@RequestParam(required = false) String nombres,
             @RequestParam(required = false) String edad) {
-        return clienteService.findClientesByEdadAndNombre(nombres, edad);
+        return clienteService.findClientesByNombreAndEdad(nombres, edad);
     }
 
 }

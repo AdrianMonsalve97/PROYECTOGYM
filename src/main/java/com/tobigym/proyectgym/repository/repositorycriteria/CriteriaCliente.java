@@ -20,7 +20,7 @@ public class CriteriaCliente implements CLCriteriaRepository {
     EntityManager em;
 
     @Override
-    public List<Cliente> findClientesByEdadAndNombre(String nombres, String edad) {
+    public List<Cliente> findClientesByNombreAndEdad(String nombres, String edad) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
         Root<Cliente> cliente = cq.from(Cliente.class);
