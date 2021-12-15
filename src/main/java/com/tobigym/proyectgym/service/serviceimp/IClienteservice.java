@@ -9,4 +9,5 @@ public interface IClienteservice {
     public Cliente save(Cliente clienteActual);
 
     List<Cliente> findClientesByNombreAndEdad(String nombres, String edad);
+    Cliente findFirstById(Long id);
 }

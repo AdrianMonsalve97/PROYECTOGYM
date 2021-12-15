@@ -31,4 +31,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Query("SELECT e FROM Cliente e WHERE e.nombres =?1 ORDER BY e.edad desc")
     List<Cliente> findByNombresOrderByEdadDesc(String edad);
 
+    Cliente findFirstById(Long id);
+
 }

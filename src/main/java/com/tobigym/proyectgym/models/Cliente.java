@@ -44,6 +44,15 @@ public class Cliente {
 
     }
 
+    public Cliente(Long id,String nombres, String apellidos, Long cedula, String edad, String genero) {
+    	this.id = id;
+    	this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.cedula = cedula;
+        this.edad = edad;
+        this.genero = genero;
+    }
+
     public Long getId() {
         return id;
     }

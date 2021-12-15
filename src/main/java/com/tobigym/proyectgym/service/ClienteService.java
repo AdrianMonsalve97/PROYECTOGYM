@@ -43,5 +43,9 @@ public class ClienteService implements IClienteservice {
     public List<Cliente> findClientesByNombreAndEdad(String nombres, String edad) {
         return criteriaQuery.findClientesByNombreAndEdad(nombres, edad);
     }
+@Override
+    public Cliente findFirstById(Long id) {
+        return clienteRepository.findFirstById(id);
+    }
 
 }
