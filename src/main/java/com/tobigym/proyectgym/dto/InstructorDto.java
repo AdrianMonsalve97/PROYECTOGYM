@@ -7,16 +7,9 @@ public class InstructorDto {
     private String nombres;
     private String apellidos;
 
-    private List<ClienteDto> clienteDto;
+    private ClienteDto cliente;
 
     // ClienteDto clienteDto;
-
-    public InstructorDto(Long id, String nombres, String apellidos, List<ClienteDto> clienteDto) {
-        this.id = id;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.clienteDto = clienteDto;
-    }
 
     public InstructorDto() {
 
@@ -46,12 +39,12 @@ public class InstructorDto {
         this.apellidos = apellidos;
     }
 
-    public List<ClienteDto> getClienteDto() {
-        return clienteDto;
+    public ClienteDto getClienteDto() {
+        return cliente;
     }
 
-    public void setClienteDto(List<ClienteDto> clienteDto) {
-        this.clienteDto = clienteDto;
+    public void setClienteDto(ClienteDto cliente) {
+        this.cliente = cliente;
     }
 
 }

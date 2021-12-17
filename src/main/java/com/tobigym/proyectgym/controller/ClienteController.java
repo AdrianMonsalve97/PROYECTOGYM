@@ -2,7 +2,6 @@ package com.tobigym.proyectgym.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -13,15 +12,14 @@ import com.tobigym.proyectgym.dto.Mensaje;
 import com.tobigym.proyectgym.models.Cliente;
 import com.tobigym.proyectgym.models.Instructor;
 import com.tobigym.proyectgym.service.ClienteService;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.tobigym.proyectgym.service.InstructorService;
 
+import org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.apache.commons.lang3.StringUtils;
 
 @RestController
 @RequestMapping("api")
@@ -67,7 +64,8 @@ public class ClienteController {
             return new ResponseEntity(new Mensaje("el apellido es obligatorio"), HttpStatus.BAD_REQUEST);
         else if (clienteService.existsByNombres(clienteDto.getNombres()))
             return new ResponseEntity(new Mensaje("nombre ya existe"), HttpStatus.BAD_REQUEST);
-        Cliente cliente = new Cliente(clienteDto.getId(),clienteDto.getNombres(), clienteDto.getApellidos(), clienteDto.getCedula(),
+        Cliente cliente = new Cliente(clienteDto.getId(), clienteDto.getNombres(), clienteDto.getApellidos(),
+                clienteDto.getCedula(),
                 clienteDto.getEdad(), clienteDto.getGenero());
         clienteService.save(cliente);
         return new ResponseEntity(new Mensaje("cliente creado"), HttpStatus.OK);
@@ -83,40 +81,36 @@ public class ClienteController {
         return cliente;
     }
 
-    private void guardarCliente(List<Cliente> cliente, HttpServletRequest request) {
+    private void guardarCliente(ArrayList<Cliente> cliente, HttpServletRequest request) {
         request.getSession().setAttribute("cliente", cliente);
     }
 
     @PostMapping(value = "/AsigagnarCliente/{id}")
-    public String asignarTarea(@ModelAttribute ClienteDto clienteDto, HttpServletRequest request,
+    public String asignarCliente(@ModelAttribute Instructor instructor, HttpServletRequest request,
             RedirectAttributes redirectAttrs) {
 
-        ArrayList<Cliente> clientes = this.obtenerCliente(request);
-        Cliente clientePorId = clienteService.findFirstById(clienteDto.getId());
-        if (clientePorId == null) {
-            redirectAttrs.addFlashAttribute("mensaje", "El usuario con el id " + clienteDto.getId() + " no existe")
+        ArrayList<Cliente> cliente = this.obtenerCliente(request);
+        Instructor instructorPorId = instructorService.findFirstById(instructor.getId());
+        if (instructorPorId == null) {
+            redirectAttrs.addFlashAttribute("mensaje", "El usuario con el id " + instructor.getId() + " no existe")
                     .addFlashAttribute("clase", "warning");
             return "Usuario no existe";
         }
         boolean encontrado = false;
-        for (Cliente clienteParaAsignarActual : clientes) {
-            if (clienteParaAsignarActual.getId().equals(clienteParaAsignarActual.getId())) {
+        for (Cliente instructorParaAsignarActual : cliente) {
+            if (instructorParaAsignarActual.getId().equals(instructorParaAsignarActual.getId())) {
                 encontrado = true;
                 break;
             }
         }
         if (!encontrado) {
-            clientes.add(new Cliente(clientePorId.getNombres(), clientePorId.getApellidos(), clientePorId.getCedula(),
-                    clientePorId.getEdad(), clientePorId.getGenero()));
+            cliente.add(
+                    new Cliente(instructorPorId.getId(), instructorPorId.getNombres(), instructorPorId.getApellidos()));
         }
 
-        this.guardarCliente(clientes, request);
-        return "usuario agregado " + clientes;
+        this.guardarCliente(cliente, request);
+        return "usuario agregado " + cliente;
 
-    }
-
-    private ArrayList<Cliente> obtenerUsaurio(HttpServletRequest request) {
-        return null;
     }
 
     // Eliminar cliente //

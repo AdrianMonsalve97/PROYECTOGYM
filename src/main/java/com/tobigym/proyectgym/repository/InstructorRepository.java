@@ -14,4 +14,7 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
     List<Instructor> findAll();
 
     boolean existsByNombres(String nombres);
+
+    Instructor findFirstById(Long id);
+    
 }

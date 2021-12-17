@@ -11,23 +11,12 @@ public class ClienteDto {
     private String edad;
     private String genero;
 
-    private List<InstructorDto> instructorDto;
+    private InstructorDto instructor;
 
     // InstructorDto instructorDto;
 
     public ClienteDto() {
 
-    }
-
-    public ClienteDto(Long id, String nombres, String apellidos, Long cedula, String edad, String genero,
-            List<InstructorDto> instructorDto) {
-        this.id = id;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.cedula = cedula;
-        this.edad = edad;
-        this.genero = genero;
-        this.instructorDto = instructorDto;
     }
 
     public Long getId() {
@@ -78,12 +67,18 @@ public class ClienteDto {
         this.genero = genero;
     }
 
-    public List<InstructorDto> getInstructorDto() {
-        return instructorDto;
+    /**
+     * @return InstructorDto return the instructor
+     */
+    public InstructorDto getInstructor() {
+        return instructor;
     }
 
-    public void setInstructorDto(List<InstructorDto> instructorDto) {
-        this.instructorDto = instructorDto;
+    /**
+     * @param instructor the instructor to set
+     */
+    public void setInstructor(InstructorDto instructor) {
+        this.instructor = instructor;
     }
 
 }

@@ -3,12 +3,13 @@ package com.tobigym.proyectgym.service;
 import java.util.List;
 import com.tobigym.proyectgym.models.Instructor;
 import com.tobigym.proyectgym.repository.InstructorRepository;
+import com.tobigym.proyectgym.service.serviceimp.IInstructorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InstructorService {
+public class InstructorService implements IInstructorService {
 
     @Autowired
     InstructorRepository instructorRepository;
@@ -31,6 +32,10 @@ public class InstructorService {
 
     public boolean existsByNombres(String nombres) {
         return instructorRepository.existsByNombres(nombres);
+    }
+
+    public Instructor findFirstById(Long id) {
+        return instructorRepository.findFirstById(id);
     }
 
 }

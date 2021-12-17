@@ -44,13 +44,32 @@ public class Cliente {
 
     }
 
-    public Cliente(Long id,String nombres, String apellidos, Long cedula, String edad, String genero) {
-    	this.id = id;
-    	this.nombres = nombres;
+    public Cliente(Long id, String nombres, String apellidos, Long cedula, String edad, String genero,
+            Instructor instructor) {
+        this.id = id;
+        this.nombres = nombres;
         this.apellidos = apellidos;
         this.cedula = cedula;
         this.edad = edad;
         this.genero = genero;
+        this.instructor = instructor;
+    }
+
+    public Cliente(Long id, String nombres, String apellidos, Long cedula, String edad, String genero) {
+
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.cedula = cedula;
+        this.edad = edad;
+        this.genero = genero;
+
+    }
+
+    public Cliente(Long id, String nombres, String apellidos) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
     }
 
     public Long getId() {
